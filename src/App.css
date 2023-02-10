@@ -1,0 +1,29 @@
+.card{
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: 500ms linear;
+}
+
+.card:hover{
+    transform: scale(0.9);
+}
+
+/* img{
+    width: 15%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    mix-blend-mode: color-burn;
+} */
+
+/* .news{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+} */
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
