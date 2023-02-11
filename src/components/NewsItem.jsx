@@ -19,7 +19,7 @@ export class NewsItem extends Component {
               <p className="card-text">{description}</p>
               <a href={url} target="_blank" className="btn btn-dark btn-sm">
                 <FontAwesomeIcon icon={faCircleInfo} style={{marginRight:'5px'}}/>
-                Read More Here 
+                Read More  
               </a>
             </div>
           </div>
