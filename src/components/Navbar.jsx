@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import logo from '../assets/logo.png'
+
 
 export default class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <nav className="navbar navbar-expand-sm navbar-light bg-info fixed-top">
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
+              {/* <img src={logo} alt="" style={{width:'10%',height:'7%',margin:'5px',borderRadius:'50%'}} /> */}
               NewsBuddy
             </a>
             <button
@@ -26,49 +29,41 @@ export default class Navbar extends Component {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
-                    Home
+                  <a className="nav-link" aria-current="page" href="/">
+                    Business
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/">
-                    Link
+                  <a className="nav-link" aria-current="page" href="/">
+                    Entertainment
                   </a>
                 </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="/"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Dropdown
+                <li className="nav-item">
+                  <a className="nav-link" aria-current="page" href="/">
+                    General
                   </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a className="dropdown-item" href="/">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/">
-                        Something else here
-                      </a>
-                    </li>
-                  </ul>
                 </li>
-                
+                <li className="nav-item">
+                  <a className="nav-link" aria-current="page" href="/">
+                    Helath
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" aria-current="page" href="/">
+                    Science
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" aria-current="page" href="/">
+                    Sports
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" aria-current="page" href="/">
+                    Technology
+                  </a>
+                </li>
               </ul>
-              
             </div>
           </div>
         </nav>
