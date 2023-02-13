@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from '../assets/logo.png'
+import {Link} from 'react-router-dom'
 
 
 export default class Navbar extends Component {
@@ -8,10 +9,10 @@ export default class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-sm navbar-light bg-info fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
+            <Link className="navbar-brand" exact to="/">
               {/* <img src={logo} alt="" style={{width:'10%',height:'7%',margin:'5px',borderRadius:'50%'}} /> */}
               NewsBuddy
-            </a>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -29,39 +30,43 @@ export default class Navbar extends Component {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
-                    Business
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
-                    Entertainment
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
+                  <Link className="nav-link" aria-current="page" exact to="/general">
                     General
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
-                    Helath
-                  </a>
+                  <Link className="nav-link" aria-current="page" exact to="/business">
+                    Business
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
+                  <Link
+                    className="nav-link"
+                    aria-current="page"
+                    exact to="/entertainment"
+                  >
+                    Entertainment
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" aria-current="page" exact to="/health">
+                    Health
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" aria-current="page" exact to="/science">
                     Science
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
+                  <Link className="nav-link" aria-current="page" exact to="/sports">
                     Sports
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
+                  <Link className="nav-link" aria-current="page" exact to="/technology">
                     Technology
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
