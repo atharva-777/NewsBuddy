@@ -7,9 +7,12 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-sm navbar-light bg-info fixed-top">
+        <nav
+          className="navbar navbar-expand-sm navbar-light bg-dark fixed-top"
+          data-bs-theme="dark"
+        >
           <div className="container-fluid">
-            <Link className="navbar-brand" exact to="/">
+            <Link className="navbar-brand" to="/">
               {/* <img src={logo} alt="" style={{width:'10%',height:'7%',margin:'5px',borderRadius:'50%'}} /> */}
               NewsBuddy
             </Link>
@@ -30,12 +33,12 @@ export default class Navbar extends Component {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" exact to="/general">
+                  <Link className="nav-link" aria-current="page" to="/general">
                     General
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" exact to="/business">
+                  <Link className="nav-link" aria-current="page" to="/business">
                     Business
                   </Link>
                 </li>
@@ -43,28 +46,32 @@ export default class Navbar extends Component {
                   <Link
                     className="nav-link"
                     aria-current="page"
-                    exact to="/entertainment"
+                    to="/entertainment"
                   >
                     Entertainment
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" exact to="/health">
+                  <Link className="nav-link" aria-current="page" to="/health">
                     Health
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" exact to="/science">
+                  <Link className="nav-link" aria-current="page" to="/science">
                     Science
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" exact to="/sports">
+                  <Link className="nav-link" aria-current="page" to="/sports">
                     Sports
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" exact to="/technology">
+                  <Link
+                    className="nav-link"
+                    aria-current="page"
+                    to="/technology"
+                  >
                     Technology
                   </Link>
                 </li>

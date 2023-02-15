@@ -41,6 +41,21 @@ export class Newz extends Component {
     });
   }
 
+  handleUpdate = async (pageNo) => {
+    if(pageNo<= this.state.totalResults/this.props.pageSize && pageNo>0){
+      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=117984fafb1e451e80b9409b8445e104&page=${pageNo}&pageSize=${this.props.pageSize}`;
+      this.state.loading = true;
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      this.setState({
+        articles: parsedData.articles,
+        totalResults: parsedData.totalResults,
+        loading: false,
+      }); 
+    }
+    
+  }
+
   handleNextClick = async () => {
     if (
       this.state.page + 1 <=
@@ -94,6 +109,7 @@ export class Newz extends Component {
           style={{
             textAlign: "center",
             marginTop: "5rem",
+            marginBottom:'30px'
           }}
         >
           <FontAwesomeIcon icon={faStar} style={{ marginRight: "10px" }} />
@@ -111,6 +127,8 @@ export class Newz extends Component {
                     description={Element.description}
                     img={Element.urlToImage}
                     url={Element.url}
+                    publishedAt={Element.publishedAt}
+                    source={Element.source}
                   />
                 </div>
               );
@@ -123,7 +141,9 @@ export class Newz extends Component {
             type="button"
             className="btn btn-dark"
             onClick={() => {
-              this.handlePrevClick(), this.scrollTop();
+              // this.handleUpdate(this.state.page-1),
+              this.handlePrevClick(),
+               this.scrollTop();
             }}
           >
             <FontAwesomeIcon
@@ -133,6 +153,7 @@ export class Newz extends Component {
             />
             Previous
           </button>
+          <p>{this.state.page}</p>
           <button
             disabled={
               this.state.page + 1 >
@@ -141,7 +162,9 @@ export class Newz extends Component {
             type="button"
             className="btn btn-dark"
             onClick={() => {
-              this.handleNextClick(), this.scrollTop();
+              // this.handleUpdate(this.state.page+1),
+              this.handleNextClick(), 
+              this.scrollTop();
             }}
           >
             Next
