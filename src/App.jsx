@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default class App extends Component {
   pageSize = 12;
+  
   render() {
     return (
       <Router>
@@ -15,7 +16,14 @@ export default class App extends Component {
             <Route
               exact
               path="/"
-              element={<Newz key="" pageSize={this.pageSize} country="in" category="" />}
+              element={
+                <Newz
+                  key=""
+                  pageSize={this.pageSize}
+                  country="in"
+                  category=""
+                />
+              }
             ></Route>
             <Route
               exact

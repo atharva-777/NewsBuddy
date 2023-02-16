@@ -1,9 +1,14 @@
+import { faScroll, faUpLong } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
-import logo from '../assets/logo.png'
 import {Link} from 'react-router-dom'
 
 
 export default class Navbar extends Component {
+  scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+  };
+
   render() {
     return (
       <div>
@@ -13,7 +18,6 @@ export default class Navbar extends Component {
         >
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              {/* <img src={logo} alt="" style={{width:'10%',height:'7%',margin:'5px',borderRadius:'50%'}} /> */}
               NewsBuddy
             </Link>
             <button
@@ -76,6 +80,9 @@ export default class Navbar extends Component {
                   </Link>
                 </li>
               </ul>
+              <button onClick={this.scrollTop} style={{padding:'5px',marginRight:'5%'}}>
+                Scroll Top
+              </button>
             </div>
           </div>
         </nav>

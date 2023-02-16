@@ -9,28 +9,40 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../App.css";
 import Spinner from "./Spinner";
-import PropTypes  from "prop-types";
+import PropTypes from "prop-types";
+import InfiniteScroll from 'react-infinite-scroll-component'
+
+
 
 export class Newz extends Component {
-  constructor() {
-    super();
-    this.state = { articles: [], loading: false, page: 1, totalResults: 0 };
+  constructor(props) {
+    super(props);
+    this.state = { articles: [], loading: true, page: 1, totalResults: 0 };
+    document.title = `${this.capitalizeFirstLetter(this.props.category)}-NewsBuddy`
   }
 
   static defaultProps = {
-    country : 'in',
-    pageSize : 12,
-    category : 'general',
-  }
+    country: "in",
+    pageSize: 12,
+    category: "general",
+  };
 
   static propTypes = {
-    country : PropTypes.string,
-    pageSize : PropTypes.number,
-    category : PropTypes.string,
-  }
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
+  };
+
+   capitalizeFirstLetter=(string)=> {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=117984fafb1e451e80b9409b8445e104&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    this.handleUpdate();
+  }
+
+  handleUpdate = async () => {
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=117984fafb1e451e80b9409b8445e104&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.state.loading = true;
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -39,87 +51,61 @@ export class Newz extends Component {
       totalResults: parsedData.totalResults,
       loading: false,
     });
-  }
-
-  handleUpdate = async (pageNo) => {
-    if(pageNo<= this.state.totalResults/this.props.pageSize && pageNo>0){
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=117984fafb1e451e80b9409b8445e104&page=${pageNo}&pageSize=${this.props.pageSize}`;
-      this.state.loading = true;
-      let data = await fetch(url);
-      let parsedData = await data.json();
-      this.setState({
-        articles: parsedData.articles,
-        totalResults: parsedData.totalResults,
-        loading: false,
-      }); 
-    }
-    
-  }
-
-  handleNextClick = async () => {
-    if (
-      this.state.page + 1 <=
-      Math.ceil(this.state.totalResults / this.props.pageSize)
-    ) {
-      let url = `https://newsapi.org/v2/top-headlines?country=${
-        this.props.country
-      }&category=${
-        this.props.category
-      }&apiKey=117984fafb1e451e80b9409b8445e104&page=${
-        this.state.page + 1
-      }&pageSize=${this.props.pageSize}`;
-      this.state.loading = true;
-      let data = await fetch(url);
-      let parsedData = await data.json();
-      this.setState({
-        articles: parsedData.articles,
-        page: this.state.page + 1,
-        loading: false,
-      });
-    }
   };
+
+ 
+
+  fetchMoreData =  () => {
+    setTimeout(async() => {
+
+
+        const url = `https://newsapi.org/v2/top-headlines?country=${
+          this.props.country
+        }&category=${
+          this.props.category
+        }&apiKey=117984fafb1e451e80b9409b8445e104&page=${
+          this.state.page + 1
+        }&pageSize=${this.props.pageSize}`;
+        this.state.loading = true;
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        this.setState({
+          articles: this.state.articles.concat(parsedData.articles),
+          page: this.state.page + 1,
+          loading: false,
+        });
+
+    }, 1500);
+  }
+
   
-  handlePrevClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${
-      this.props.country
-    }&category=${
-      this.props.category
-    }&apiKey=117984fafb1e451e80b9409b8445e104&page=${
-      this.state.page - 1
-    }&pageSize=${this.props.pageSize}`;
-    this.state.loading = true;
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    this.setState({
-      articles: parsedData.articles,
-      page: this.state.page - 1,
-      loading: false,
-    });
-  };
-
-   scrollTop = () => {
-    document.documentElement.scrollTop = 0;
-  }
 
   render() {
     return (
       <div className="container my-3">
-        {this.state.loading && <Spinner />}
         <h2
           style={{
             textAlign: "center",
             marginTop: "5rem",
-            marginBottom:'30px'
+            marginBottom: "30px",
           }}
         >
           <FontAwesomeIcon icon={faStar} style={{ marginRight: "10px" }} />
-          Top Headlines
+          Top Headlines in {this.capitalizeFirstLetter(this.props.category)}
           <FontAwesomeIcon icon={faStar} style={{ marginLeft: "10px" }} />
+          {this.state.loading && <Spinner/>}
         </h2>
 
-        <div className="flex-container">
-          {!this.state.loading &&
-            this.state.articles.map((Element) => {
+        <InfiniteScroll
+          dataLength={this.state.articles.length}
+          next={this.fetchMoreData}
+          hasMore={
+            this.state.articles.length!==this.state.totalResults
+          }
+          loader={<Spinner/>}
+        >
+          <div className="flex-container">
+            {this.state.articles.map((Element) => {
               return (
                 <div className="" key={Element.url}>
                   <NewsItem
@@ -133,49 +119,12 @@ export class Newz extends Component {
                 </div>
               );
             })}
-        </div>
+          </div>
+        </InfiniteScroll>
+
         <hr className="line" />
-        <div className="d-flex justify-content-between">
-          <button
-            disabled={this.state.page <= 1}
-            type="button"
-            className="btn btn-dark"
-            onClick={() => {
-              // this.handleUpdate(this.state.page-1),
-              this.handlePrevClick(),
-               this.scrollTop();
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faLeftLong}
-              fade
-              style={{ marginRight: "5px" }}
-            />
-            Previous
-          </button>
-          <p>{this.state.page}</p>
-          <button
-            disabled={
-              this.state.page + 1 >
-              Math.ceil(this.state.totalResults / this.props.pageSize)
-            }
-            type="button"
-            className="btn btn-dark"
-            onClick={() => {
-              // this.handleUpdate(this.state.page+1),
-              this.handleNextClick(), 
-              this.scrollTop();
-            }}
-          >
-            Next
-            <FontAwesomeIcon
-              icon={faRightLong}
-              fade
-              style={{ marginLeft: "5px" }}
-            />
-          </button>
-        </div>
-        {/* <FontAwesomeIcon icon={faSpinner} size="2x" spin/> */}
+        
+
       </div>
     );
   }
