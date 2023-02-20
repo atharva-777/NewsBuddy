@@ -3,21 +3,37 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Newz from "./components/Newz";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
+
 
 export default class App extends Component {
+  constructor(){
+    super()
+  }
+  state = {progress:0}
   pageSize = 12;
-  
+
+  handleClick  = (progress) => {
+    this.setState({progress:progress})
+  }
+
   render() {
     return (
       <Router>
         <div>
           <Navbar></Navbar>
+          <LoadingBar
+            color="white"
+            background="black"
+            progress={this.state.progress}
+          />
+
           <Routes>
             <Route
               exact
               path="/"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   key=""
                   pageSize={this.pageSize}
                   country="in"
@@ -29,7 +45,7 @@ export default class App extends Component {
               exact
               path="/general"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   key="general"
                   pageSize={this.pageSize}
                   country="in"
@@ -41,7 +57,7 @@ export default class App extends Component {
               exact
               path="/business"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   key="business"
                   pageSize={this.pageSize}
                   country="in"
@@ -53,7 +69,7 @@ export default class App extends Component {
               exact
               path="/entertainment"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   pageSize={this.pageSize}
                   key="entertainment"
                   country="in"
@@ -65,7 +81,7 @@ export default class App extends Component {
               exact
               path="/health"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   key="health"
                   pageSize={this.pageSize}
                   country="in"
@@ -77,7 +93,7 @@ export default class App extends Component {
               exact
               path="/science"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   pageSize={this.pageSize}
                   key="science"
                   country="in"
@@ -89,7 +105,7 @@ export default class App extends Component {
               exact
               path="/sports"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   key="sports"
                   pageSize={this.pageSize}
                   country="in"
@@ -101,7 +117,7 @@ export default class App extends Component {
               exact
               path="/technology"
               element={
-                <Newz
+                <Newz handleClick = {this.handleClick}
                   pageSize={this.pageSize}
                   key="technology"
                   country="in"

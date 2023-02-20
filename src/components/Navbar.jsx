@@ -1,13 +1,16 @@
 import { faScroll, faUpLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   scrollTop = () => {
     document.documentElement.scrollTop = 0;
   };
+
+  scrollDown = () => {
+    document.documentElement.scrollBy(0,500);
+  }
 
   render() {
     return (
@@ -80,8 +83,17 @@ export default class Navbar extends Component {
                   </Link>
                 </li>
               </ul>
-              <button onClick={this.scrollTop} style={{padding:'5px',marginRight:'5%'}}>
+              <button
+                onClick={this.scrollTop}
+                style={{ padding: "5px", marginRight: "5%" }}
+              >
                 Scroll Top
+              </button>
+              <button
+                onClick={this.scrollDown}
+                style={{ padding: "5px", marginRight: "5%" }}
+              >
+                Scroll Down
               </button>
             </div>
           </div>
@@ -90,4 +102,3 @@ export default class Navbar extends Component {
     );
   }
 }
-

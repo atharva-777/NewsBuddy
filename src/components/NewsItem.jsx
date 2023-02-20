@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCircleInfo, faDragon } from "@fortawesome/free-solid-svg-icons"
-import logo from '../assets/logo.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo, faDragon } from "@fortawesome/free-solid-svg-icons";
+import logo from "../assets/logo.png";
 
-import '../App.css'
-
+import "../App.css";
 
 export class NewsItem extends Component {
-
-
   render() {
     let { title, description, img, url, publishedAt, source } = this.props;
     return (
@@ -21,7 +18,11 @@ export class NewsItem extends Component {
             {source.name}
           </span>
 
-          <img src={img!=null?img:logo} className="card-img-top" alt="Image" />
+          <img
+            src={img != null ? img : logo}
+            className="card-img-top"
+            alt="Image"
+          />
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{description}</p>
