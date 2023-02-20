@@ -38,7 +38,7 @@ export class Newz extends Component {
   }
 
   handleUpdate = async () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=117984fafb1e451e80b9409b8445e104&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.state.loading = true;
     this.props.handleClick(20);
     let data = await fetch(url);
@@ -61,7 +61,7 @@ export class Newz extends Component {
         this.props.country
       }&category=${
         this.props.category
-      }&apiKey=117984fafb1e451e80b9409b8445e104&page=${
+      }&apiKey=${this.props.apiKey}&page=${
         this.state.page + 1
       }&pageSize=${this.props.pageSize}`;
       this.state.loading = true;

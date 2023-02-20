@@ -7,15 +7,16 @@ import LoadingBar from "react-top-loading-bar";
 
 
 export default class App extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
   }
-  state = {progress:0}
+  apiKey = import.meta.env.VITE_NEWS_API;
+  state = { progress: 0 };
   pageSize = 12;
 
-  handleClick  = (progress) => {
-    this.setState({progress:progress})
-  }
+  handleClick = (progress) => {
+    this.setState({ progress: progress });
+  };
 
   render() {
     return (
@@ -33,7 +34,9 @@ export default class App extends Component {
               exact
               path="/"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   key=""
                   pageSize={this.pageSize}
                   country="in"
@@ -45,7 +48,9 @@ export default class App extends Component {
               exact
               path="/general"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   key="general"
                   pageSize={this.pageSize}
                   country="in"
@@ -57,7 +62,9 @@ export default class App extends Component {
               exact
               path="/business"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   key="business"
                   pageSize={this.pageSize}
                   country="in"
@@ -69,7 +76,9 @@ export default class App extends Component {
               exact
               path="/entertainment"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   pageSize={this.pageSize}
                   key="entertainment"
                   country="in"
@@ -81,7 +90,9 @@ export default class App extends Component {
               exact
               path="/health"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   key="health"
                   pageSize={this.pageSize}
                   country="in"
@@ -93,7 +104,9 @@ export default class App extends Component {
               exact
               path="/science"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   pageSize={this.pageSize}
                   key="science"
                   country="in"
@@ -105,7 +118,9 @@ export default class App extends Component {
               exact
               path="/sports"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   key="sports"
                   pageSize={this.pageSize}
                   country="in"
@@ -117,7 +132,9 @@ export default class App extends Component {
               exact
               path="/technology"
               element={
-                <Newz handleClick = {this.handleClick}
+                <Newz
+                  apiKey={this.apiKey}
+                  handleClick={this.handleClick}
                   pageSize={this.pageSize}
                   key="technology"
                   country="in"
