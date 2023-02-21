@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Newz from "./components/Newz";
@@ -6,19 +6,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 
 
-export default class App extends Component {
-  constructor() {
-    super();
-  }
-  apiKey = import.meta.env.VITE_NEWS_API;
-  state = { progress: 0 };
-  pageSize = 12;
+const App = () => {
 
-  handleClick = (progress) => {
-    this.setState({ progress: progress });
+  const apiKey = import.meta.env.VITE_NEWS_API;
+  
+  const [state, setState] = useState({ progress: 0 });
+  const pageSize = 12;
+
+  const handleClick = (progress) => {
+     setState({ progress: progress });
   };
 
-  render() {
+  
     return (
       <Router>
         <div>
@@ -26,7 +25,7 @@ export default class App extends Component {
           <LoadingBar
             color="white"
             background="black"
-            progress={this.state.progress}
+            progress={ state.progress}
           />
 
           <Routes>
@@ -35,10 +34,10 @@ export default class App extends Component {
               path="/"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
                   key=""
-                  pageSize={this.pageSize}
+                  pageSize={ pageSize}
                   country="in"
                   category=""
                 />
@@ -49,10 +48,10 @@ export default class App extends Component {
               path="/general"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
                   key="general"
-                  pageSize={this.pageSize}
+                  pageSize={ pageSize}
                   country="in"
                   category="general"
                 />
@@ -63,10 +62,10 @@ export default class App extends Component {
               path="/business"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
                   key="business"
-                  pageSize={this.pageSize}
+                  pageSize={ pageSize}
                   country="in"
                   category="business"
                 />
@@ -77,9 +76,9 @@ export default class App extends Component {
               path="/entertainment"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
-                  pageSize={this.pageSize}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
+                  pageSize={ pageSize}
                   key="entertainment"
                   country="in"
                   category="entertainment"
@@ -91,10 +90,10 @@ export default class App extends Component {
               path="/health"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
                   key="health"
-                  pageSize={this.pageSize}
+                  pageSize={ pageSize}
                   country="in"
                   category="health"
                 />
@@ -105,9 +104,9 @@ export default class App extends Component {
               path="/science"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
-                  pageSize={this.pageSize}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
+                  pageSize={ pageSize}
                   key="science"
                   country="in"
                   category="science"
@@ -119,10 +118,10 @@ export default class App extends Component {
               path="/sports"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
                   key="sports"
-                  pageSize={this.pageSize}
+                  pageSize={ pageSize}
                   country="in"
                   category="sports"
                 />
@@ -133,9 +132,9 @@ export default class App extends Component {
               path="/technology"
               element={
                 <Newz
-                  apiKey={this.apiKey}
-                  handleClick={this.handleClick}
-                  pageSize={this.pageSize}
+                  apiKey={ apiKey}
+                  handleClick={ handleClick}
+                  pageSize={ pageSize}
                   key="technology"
                   country="in"
                   category="technology"
@@ -146,5 +145,8 @@ export default class App extends Component {
         </div>
       </Router>
     );
-  }
+  
 }
+
+
+export default App
